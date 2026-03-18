@@ -777,6 +777,7 @@ document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
   function startPattern(){
     const pat = pickPattern();
+    console.log('🎯 演出パターン:', pat);
     const logo = makeLogo();
 
     setTimeout(()=> shake(logo, ()=>{
@@ -1072,14 +1073,24 @@ document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
     const vOv = document.createElement('div');
     vOv.className = 'video-overlay';
     vOv.innerHTML = `
-      <video src="niwatama.mp4" autoplay playsinline></video>
+      <video src="niwatama.mp4" muted playsinline preload="auto"></video>
       <div class="video-close">✕</div>
     `;
+    // Append directly to body (not inside pointer-events:none overlay)
     document.body.appendChild(vOv);
     requestAnimationFrame(()=>requestAnimationFrame(()=> vOv.classList.add('active')));
 
     const vid = vOv.querySelector('video');
     const closeBtn = vOv.querySelector('.video-close');
+
+    // Start muted (browser allows this), then unmute after play starts
+    vid.play().then(()=>{
+      vid.muted = false;
+    }).catch(()=>{
+      // If even muted fails, try on user interaction
+      vid.muted = true;
+      vid.play().catch(()=>{});
+    });
 
     function closeVideo(){
       vOv.classList.remove('active');
