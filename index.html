@@ -71,6 +71,12 @@
     /* Logo burst overlay */
     .logo-burst-overlay{position:fixed;inset:0;z-index:10000;pointer-events:none;display:flex;align-items:center;justify-content:center;}
     .logo-burst-img{position:absolute;transition:none;}
+    /* Video overlay */
+    .video-overlay{position:fixed;inset:0;z-index:10001;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.85);opacity:0;transition:opacity .5s;pointer-events:auto;cursor:pointer;}
+    .video-overlay.active{opacity:1;}
+    .video-overlay video{max-width:85vw;max-height:80vh;border-radius:16px;box-shadow:0 0 80px rgba(139,92,246,.4),0 0 160px rgba(59,130,246,.2);}
+    .video-close{position:absolute;top:24px;right:32px;color:#fff;font-size:2rem;font-family:'Orbitron',sans-serif;cursor:pointer;opacity:.6;transition:opacity .3s;}
+    .video-close:hover{opacity:1;}
     .about-content h3{font-family:'Orbitron',sans-serif;font-size:1.8rem;margin-bottom:24px;line-height:1.4;color:var(--dark);}
     .about-content p{color:var(--mid);line-height:2;margin-bottom:16px;font-weight:300;}
 
@@ -1051,12 +1057,39 @@ document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
       sparks(cx,cy,80);
       canvasParticles(cx,cy);
-      // Extra canvas bursts
       for(let i=0;i<60;i++) cPs.push(new CP(cx,cy));
       setTimeout(()=>el.remove(),300);
+
+      // After explosion settles, play video
+      setTimeout(()=> showVideo(), 800);
     },2500);
 
     cleanup(4000);
+  }
+
+  // ===== VIDEO OVERLAY =====
+  function showVideo(){
+    const vOv = document.createElement('div');
+    vOv.className = 'video-overlay';
+    vOv.innerHTML = `
+      <video src="niwatama.mp4" autoplay playsinline></video>
+      <div class="video-close">✕</div>
+    `;
+    document.body.appendChild(vOv);
+    requestAnimationFrame(()=>requestAnimationFrame(()=> vOv.classList.add('active')));
+
+    const vid = vOv.querySelector('video');
+    const closeBtn = vOv.querySelector('.video-close');
+
+    function closeVideo(){
+      vOv.classList.remove('active');
+      vid.pause();
+      setTimeout(()=> vOv.remove(), 500);
+    }
+
+    closeBtn.addEventListener('click', closeVideo);
+    vOv.addEventListener('click', e => { if(e.target === vOv) closeVideo(); });
+    vid.addEventListener('ended', ()=> setTimeout(closeVideo, 500));
   }
 })();
 </script>
