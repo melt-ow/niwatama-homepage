@@ -47,7 +47,7 @@
     .scroll-ind .line{width:1px;height:40px;background:linear-gradient(to bottom,var(--purple),transparent);animation:pulse 2s ease infinite;}
 
     /* SECTIONS */
-    section{position:relative;z-index:1;padding:120px 40px;}
+    section{position:relative;z-index:1;padding:120px 40px;width:100%;}
     .sec-head{text-align:center;margin-bottom:80px;}
     .sec-label{font-family:'Orbitron',sans-serif;font-size:.75rem;letter-spacing:6px;text-transform:uppercase;color:var(--purple);margin-bottom:16px;display:block;}
     .sec-title{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;margin-bottom:20px;color:var(--dark);}
@@ -56,17 +56,17 @@
     /* ABOUT */
     .about{background:linear-gradient(180deg,var(--bg),var(--bg2),var(--bg));}
     .about-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
-    .about-vis{position:relative;height:450px;display:flex;justify-content:center;align-items:center;}
-    .about-3d{width:320px;height:380px;position:relative;}
-    .orb3d{position:absolute;top:50%;left:50%;border:2px solid rgba(59,130,246,.15);border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;}
-    .orb3d:nth-child(1){width:280px;height:340px;margin:-170px 0 0 -140px;border-color:rgba(59,130,246,.18);animation:eggSpin1 14s linear infinite;}
-    .orb3d:nth-child(2){width:220px;height:268px;margin:-134px 0 0 -110px;border-color:rgba(236,72,153,.18);animation:eggSpin2 11s linear infinite;}
-    .orb3d:nth-child(3){width:158px;height:192px;margin:-96px 0 0 -79px;border-color:rgba(139,92,246,.18);animation:eggSpin3 8s linear infinite;}
+    .about-vis{position:relative;height:450px;display:flex;justify-content:center;align-items:center;perspective:800px;}
+    .about-3d{width:340px;height:340px;position:relative;transform-style:preserve-3d;}
+    .orb3d{position:absolute;top:50%;left:50%;border:2px solid;border-radius:50%;transform-style:preserve-3d;}
+    .orb3d:nth-child(1){width:320px;height:320px;margin:-160px 0 0 -160px;border-color:rgba(59,130,246,.2);animation:orbSpin1 16s linear infinite;}
+    .orb3d:nth-child(2){width:240px;height:240px;margin:-120px 0 0 -120px;border-color:rgba(236,72,153,.2);animation:orbSpin2 12s linear infinite;}
+    .orb3d:nth-child(3){width:170px;height:170px;margin:-85px 0 0 -85px;border-color:rgba(139,92,246,.2);animation:orbSpin3 9s linear infinite;}
     .orb-dot{position:absolute;border-radius:50%;top:-7px;left:50%;transform:translateX(-50%);}
     .orb3d:nth-child(1) .orb-dot{width:14px;height:14px;background:var(--blue);box-shadow:0 0 20px rgba(59,130,246,.6);}
     .orb3d:nth-child(2) .orb-dot{width:11px;height:11px;background:var(--pink);box-shadow:0 0 20px rgba(236,72,153,.6);}
     .orb3d:nth-child(3) .orb-dot{width:9px;height:9px;background:var(--purple);box-shadow:0 0 20px rgba(139,92,246,.6);}
-    .vis-core{width:70px;height:85px;position:absolute;top:50%;left:50%;margin:-42px 0 0 -35px;z-index:5;overflow:hidden;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;box-shadow:0 0 40px rgba(59,130,246,.3),0 0 80px rgba(139,92,246,.15);animation:corePulse 3s ease-in-out infinite;background:#fff;}
+    .vis-core{width:80px;height:80px;position:absolute;top:50%;left:50%;margin:-40px 0 0 -40px;z-index:5;overflow:hidden;border-radius:50%;box-shadow:0 0 40px rgba(59,130,246,.3),0 0 80px rgba(139,92,246,.15);animation:corePulse 3s ease-in-out infinite;background:#fff;}
     .vis-core img{width:100%;height:100%;object-fit:cover;}
     /* Logo burst overlay */
     .logo-burst-overlay{position:fixed;inset:0;z-index:10000;pointer-events:none;display:flex;align-items:center;justify-content:center;}
@@ -77,8 +77,11 @@
     .video-overlay video{max-width:85vw;max-height:80vh;border-radius:16px;box-shadow:0 0 80px rgba(139,92,246,.4),0 0 160px rgba(59,130,246,.2);}
     .video-close{position:absolute;top:24px;right:32px;color:#fff;font-size:2rem;font-family:'Orbitron',sans-serif;cursor:pointer;opacity:.6;transition:opacity .3s;}
     .video-close:hover{opacity:1;}
-    .about-content h3{font-family:'Orbitron',sans-serif;font-size:1.8rem;margin-bottom:24px;line-height:1.4;color:var(--dark);}
-    .about-content p{color:var(--mid);line-height:2;margin-bottom:16px;font-weight:300;}
+    .about-content{perspective:600px;transform-style:preserve-3d;}
+    .about-content h3{font-family:'Orbitron',sans-serif;font-size:1.8rem;margin-bottom:24px;line-height:1.4;color:var(--dark);transform:translateZ(40px);text-shadow:0 4px 16px rgba(59,130,246,.08);}
+    .about-content .sec-label{transform:translateZ(60px);}
+    .about-content p{color:var(--mid);line-height:2;margin-bottom:16px;font-weight:300;transform:translateZ(20px);}
+    .about-content .stats-orbit{transform:translateZ(30px);}
 
     /* STATS - orbital circles */
     .stats-orbit{display:flex;justify-content:center;gap:32px;margin-top:40px;}
@@ -88,54 +91,61 @@
     .stat-num{font-family:'Orbitron',sans-serif;font-size:1.5rem;font-weight:700;background:linear-gradient(135deg,var(--blue),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     .stat-lbl{font-size:.65rem;color:var(--light);margin-top:4px;letter-spacing:1px;}
 
-    /* SERVICES - floating orbs */
-    .svc-cosmos{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:48px;perspective:1000px;}
-    .svc-orb{width:200px;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;transition:transform .5s cubic-bezier(.2,1,.3,1);transform-style:preserve-3d;}
-    .svc-orb:hover{transform:translateY(-12px) scale(1.05);}
-    .svc-sphere{width:120px;height:120px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;margin-bottom:20px;position:relative;transition:all .5s cubic-bezier(.2,1,.3,1);transform-style:preserve-3d;}
-    .svc-sphere::before{content:'';position:absolute;inset:0;border-radius:50%;opacity:.15;transition:opacity .4s;}
-    .svc-sphere::after{content:'';position:absolute;width:40%;height:40%;top:15%;left:18%;border-radius:50%;background:rgba(255,255,255,.5);filter:blur(6px);transition:all .4s;}
-    .svc-orb:hover .svc-sphere{transform:rotateY(15deg) rotateX(-10deg);box-shadow:0 20px 60px rgba(0,0,0,.08);}
-    .svc-orb:nth-child(1) .svc-sphere{background:linear-gradient(135deg,#dbeafe,#bfdbfe);}.svc-orb:nth-child(1) .svc-sphere::before{background:var(--blue);}
-    .svc-orb:nth-child(2) .svc-sphere{background:linear-gradient(135deg,#fce7f3,#fbcfe8);}.svc-orb:nth-child(2) .svc-sphere::before{background:var(--pink);}
-    .svc-orb:nth-child(3) .svc-sphere{background:linear-gradient(135deg,#ede9fe,#ddd6fe);}.svc-orb:nth-child(3) .svc-sphere::before{background:var(--purple);}
-    .svc-orb:nth-child(4) .svc-sphere{background:linear-gradient(135deg,#fef3c7,#fde68a);}.svc-orb:nth-child(4) .svc-sphere::before{background:var(--yellow);}
-    .svc-orb:nth-child(5) .svc-sphere{background:linear-gradient(135deg,#d1fae5,#a7f3d0);}.svc-orb:nth-child(5) .svc-sphere::before{background:var(--green);}
-    .svc-orb:nth-child(6) .svc-sphere{background:linear-gradient(135deg,#ffedd5,#fed7aa);}.svc-orb:nth-child(6) .svc-sphere::before{background:var(--orange);}
-    /* orbit ring around sphere */
-    .svc-ring{position:absolute;width:140%;height:140%;border:1.5px solid;border-radius:50%;opacity:0;transition:all .5s;transform:rotateX(65deg) scale(.8);}
-    .svc-orb:hover .svc-ring{opacity:.2;transform:rotateX(65deg) scale(1);animation:ringFloat 3s ease-in-out infinite;}
-    .svc-orb:nth-child(1) .svc-ring{border-color:var(--blue);}
-    .svc-orb:nth-child(2) .svc-ring{border-color:var(--pink);}
-    .svc-orb:nth-child(3) .svc-ring{border-color:var(--purple);}
-    .svc-orb:nth-child(4) .svc-ring{border-color:var(--yellow);}
-    .svc-orb:nth-child(5) .svc-ring{border-color:var(--green);}
-    .svc-orb:nth-child(6) .svc-ring{border-color:var(--orange);}
-    .svc-orb h3{font-size:1rem;font-weight:700;margin-bottom:8px;color:var(--dark);}
-    .svc-orb p{color:var(--mid);font-size:.8rem;line-height:1.6;font-weight:300;}
+    /* SERVICES - category tabs + grid */
+    .svc-wrap{max-width:1100px;margin:0 auto;}
+    .svc-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:48px;}
+    .svc-tab{padding:10px 22px;border-radius:50px;border:1px solid var(--border);background:var(--bg);color:var(--mid);font-size:.78rem;font-weight:500;letter-spacing:1px;cursor:pointer;transition:all .3s;white-space:nowrap;}
+    .svc-tab:hover{border-color:var(--purple);color:var(--purple);}
+    .svc-tab.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent;box-shadow:0 4px 20px rgba(59,130,246,.2);}
+    .svc-panel{display:none;animation:fadeUp .5s ease both;}
+    .svc-panel.active{display:block;}
+    .svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;perspective:1000px;}
+    .svc-item{padding:28px;border-radius:20px;border:1px solid var(--border);background:var(--bg);transition:transform .4s cubic-bezier(.2,1,.3,1),box-shadow .4s;cursor:default;transform-style:preserve-3d;}
+    .svc-item:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,.06);}
+    .svc-item-head{display:flex;align-items:center;gap:14px;margin-bottom:12px;}
+    .svc-item-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+    .svc-item h3{font-size:.95rem;font-weight:700;color:var(--dark);line-height:1.4;}
+    .svc-item p{color:var(--mid);font-size:.82rem;line-height:1.8;font-weight:300;}
 
-    /* WORKS - 3D tilt cards */
+    /* WORKS - Case Study Cards */
     .works{background:linear-gradient(180deg,var(--bg),var(--bg2),var(--bg));}
-    .works-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:32px;perspective:1200px;}
-    .work-card{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:16/10;cursor:pointer;transition:transform .4s cubic-bezier(.2,1,.3,1),box-shadow .4s;transform-style:preserve-3d;will-change:transform;}
-    .work-card:hover{box-shadow:0 30px 80px rgba(0,0,0,.1);}
-    .work-bg{width:100%;height:100%;position:absolute;top:0;left:0;}
-    .work-card:nth-child(1) .work-bg{background:linear-gradient(135deg,#dbeafe,#c7d2fe,#e0e7ff);}
-    .work-card:nth-child(2) .work-bg{background:linear-gradient(135deg,#fce7f3,#f5d0fe,#fae8ff);}
-    .work-card:nth-child(3) .work-bg{background:linear-gradient(135deg,#d1fae5,#a7f3d0,#bbf7d0);}
-    .work-card:nth-child(4) .work-bg{background:linear-gradient(135deg,#fef3c7,#fde68a,#fed7aa);}
-    .work-inner{position:relative;width:100%;height:100%;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:40px;}
-    .work-inner::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(255,255,255,.9) 0%,rgba(255,255,255,.3) 50%,transparent 100%);}
-    .work-tag{position:relative;display:inline-block;padding:4px 14px;border-radius:20px;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;width:fit-content;}
-    .work-card:nth-child(1) .work-tag{background:rgba(59,130,246,.12);color:var(--blue);}
-    .work-card:nth-child(2) .work-tag{background:rgba(236,72,153,.12);color:var(--pink);}
-    .work-card:nth-child(3) .work-tag{background:rgba(16,185,129,.12);color:var(--green);}
-    .work-card:nth-child(4) .work-tag{background:rgba(245,158,11,.12);color:var(--yellow);}
-    .work-inner h3{position:relative;font-size:1.3rem;font-weight:700;margin-bottom:8px;color:var(--dark);}
-    .work-inner p{position:relative;color:var(--mid);font-size:.85rem;font-weight:300;}
-    /* 3D floating icon inside card */
-    .work-float{position:absolute;top:20%;left:50%;transform:translate(-50%,-50%);z-index:1;font-size:4rem;opacity:.15;transition:all .5s;filter:blur(1px);}
-    .work-card:hover .work-float{opacity:.3;transform:translate(-50%,-50%) scale(1.3) rotateY(20deg);filter:blur(0);}
+    .works-grid{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:28px;}
+    .case-card{position:relative;border-radius:24px;overflow:hidden;cursor:pointer;transition:transform .4s cubic-bezier(.2,1,.3,1),box-shadow .4s;transform-style:preserve-3d;will-change:transform;border:1px solid var(--border);background:var(--bg);}
+    .case-card:hover{box-shadow:0 20px 60px rgba(0,0,0,.07);transform:translateY(-4px);}
+    .case-head{display:flex;align-items:center;gap:24px;padding:36px 40px;position:relative;}
+    .case-icon{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;position:relative;transition:transform .4s;}
+    .case-card:hover .case-icon{transform:scale(1.1) rotateY(15deg);}
+    .case-icon::after{content:'';position:absolute;width:40%;height:40%;top:12%;left:16%;border-radius:50%;background:rgba(255,255,255,.5);filter:blur(4px);}
+    .case-card:nth-child(1) .case-icon{background:linear-gradient(135deg,#dbeafe,#bfdbfe);}
+    .case-card:nth-child(2) .case-icon{background:linear-gradient(135deg,#d1fae5,#a7f3d0);}
+    .case-card:nth-child(3) .case-icon{background:linear-gradient(135deg,#fce7f3,#fbcfe8);}
+    .case-card:nth-child(4) .case-icon{background:linear-gradient(135deg,#ffedd5,#fed7aa);}
+    .case-card:nth-child(5) .case-icon{background:linear-gradient(135deg,#ede9fe,#ddd6fe);}
+    .case-info{flex:1;min-width:0;}
+    .case-tag{display:inline-block;padding:3px 12px;border-radius:20px;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+    .case-card:nth-child(1) .case-tag{background:rgba(59,130,246,.1);color:var(--blue);}
+    .case-card:nth-child(2) .case-tag{background:rgba(16,185,129,.1);color:var(--green);}
+    .case-card:nth-child(3) .case-tag{background:rgba(236,72,153,.1);color:var(--pink);}
+    .case-card:nth-child(4) .case-tag{background:rgba(249,115,22,.1);color:var(--orange);}
+    .case-card:nth-child(5) .case-tag{background:rgba(139,92,246,.1);color:var(--purple);}
+    .case-info h3{font-size:1.15rem;font-weight:700;color:var(--dark);margin-bottom:6px;line-height:1.5;}
+    .case-info .case-sub{font-size:.82rem;color:var(--mid);font-weight:300;line-height:1.6;}
+    .case-toggle{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s;background:var(--bg);}
+    .case-toggle svg{width:14px;height:14px;stroke:var(--mid);transition:transform .3s;}
+    .case-card.open .case-toggle{background:linear-gradient(135deg,var(--blue),var(--purple));border-color:transparent;}
+    .case-card.open .case-toggle svg{stroke:#fff;transform:rotate(180deg);}
+    .case-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.16,1,.3,1),padding .3s;}
+    .case-card.open .case-body{max-height:800px;}
+    .case-body-inner{padding:0 40px 36px;border-top:1px solid var(--border);margin:0 24px;}
+    .case-body-inner{padding-top:28px;}
+    .case-story{color:var(--mid);font-size:.88rem;line-height:2;font-weight:300;margin-bottom:24px;}
+    .case-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;}
+    .case-metric{padding:16px 20px;border-radius:16px;background:var(--bg2);border:1px solid var(--border);}
+    .case-metric-label{font-size:.7rem;color:var(--light);letter-spacing:1px;margin-bottom:6px;}
+    .case-metric-row{display:flex;align-items:center;gap:8px;}
+    .case-metric-before{font-size:.9rem;color:var(--light);font-weight:300;text-decoration:line-through;}
+    .case-metric-arrow{color:var(--light);font-size:.7rem;}
+    .case-metric-after{font-family:'Orbitron',sans-serif;font-size:1.05rem;font-weight:700;background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 
     /* PHILOSOPHY */
     .philosophy{text-align:center;padding:160px 40px;}
@@ -163,9 +173,9 @@
     @keyframes rot{from{transform:rotate(0);}to{transform:rotate(360deg);}}
     @keyframes pulse{0%,100%{opacity:.3;}50%{opacity:1;}}
     @keyframes corePulse{0%,100%{box-shadow:0 0 40px rgba(59,130,246,.4),0 0 80px rgba(139,92,246,.2);transform:scale(1);}50%{box-shadow:0 0 60px rgba(59,130,246,.6),0 0 120px rgba(139,92,246,.3);transform:scale(1.08);}}
-    @keyframes eggSpin1{from{transform:rotate(0);}to{transform:rotate(360deg);}}
-    @keyframes eggSpin2{from{transform:rotate(60deg);}to{transform:rotate(420deg);}}
-    @keyframes eggSpin3{from{transform:rotate(120deg);}to{transform:rotate(480deg);}}
+    @keyframes orbSpin1{from{transform:rotateX(70deg) rotateY(0deg) rotateZ(0deg);}to{transform:rotateX(70deg) rotateY(0deg) rotateZ(360deg);}}
+    @keyframes orbSpin2{from{transform:rotateX(55deg) rotateY(40deg) rotateZ(0deg);}to{transform:rotateX(55deg) rotateY(40deg) rotateZ(360deg);}}
+    @keyframes orbSpin3{from{transform:rotateX(40deg) rotateY(-30deg) rotateZ(0deg);}to{transform:rotateX(40deg) rotateY(-30deg) rotateZ(360deg);}}
     @keyframes ringFloat{0%,100%{transform:rotateX(65deg) scale(1);}50%{transform:rotateX(65deg) scale(1.06);}}
 
     .reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.16,1,.3,1);}
@@ -174,13 +184,15 @@
     @media(max-width:968px){
       .about-grid{grid-template-columns:1fr;gap:40px;}
       .about-vis{height:350px;}
-      .works-grid{grid-template-columns:1fr;}
-      .svc-cosmos{gap:32px;}
+      .case-head{padding:24px 20px;gap:16px;}
+      .case-body-inner{margin:0 12px;}
+      .case-metrics{grid-template-columns:1fr 1fr;}
+      .svc-grid{grid-template-columns:1fr;}
     }
     @media(max-width:640px){
       nav{padding:16px 20px;}.nav-links{display:none;}
       section{padding:80px 20px;}
-      .svc-cosmos{flex-direction:column;align-items:center;}
+      .svc-tabs{gap:6px;} .svc-tab{padding:8px 14px;font-size:.7rem;}
       .stats-orbit{flex-direction:column;align-items:center;}
       .hero-cta{flex-direction:column;align-items:center;}
       .contact-wrap{padding:40px 24px;}
@@ -243,44 +255,195 @@
   <div class="sec-head reveal">
     <span class="sec-label">Services</span>
     <h2 class="sec-title">WHAT WE DO</h2>
-    <p class="sec-desc">CREATIVE × DATA SCIENCE — 2つの事業領域でビジネスの成長を加速</p>
+    <p class="sec-desc">CREATIVE × DATA SCIENCE — あらゆる業務課題をデータとAIで解決</p>
   </div>
-  <div class="svc-cosmos">
-    <div class="svc-orb reveal"><div class="svc-sphere">🎬<div class="svc-ring"></div></div><h3>YouTubeディレクション</h3><p>戦略設計・企画・制作・分析改善まで一気通貫でチャンネルをプロデュース</p></div>
-    <div class="svc-orb reveal"><div class="svc-sphere">📊<div class="svc-ring"></div></div><h3>発注量最適化</h3><p>AIが日次の適正発注量を自動算出。在庫コスト15〜30%削減</p></div>
-    <div class="svc-orb reveal"><div class="svc-sphere">🔔<div class="svc-ring"></div></div><h3>退会予兆検知</h3><p>行動データから退会リスクを早期検知。退会率20〜40%改善</p></div>
-    <div class="svc-orb reveal"><div class="svc-sphere">💰<div class="svc-ring"></div></div><h3>価格最適化</h3><p>周辺イベント連動で需要に合わせた自動価格調整。RevPAR 10〜25%向上</p></div>
-    <div class="svc-orb reveal"><div class="svc-sphere">🚚<div class="svc-ring"></div></div><h3>ルート最適化</h3><p>積み込み順序と配送ルートを同時算出。配送コスト10〜20%削減</p></div>
-    <div class="svc-orb reveal"><div class="svc-sphere">📋<div class="svc-ring"></div></div><h3>アンケート分析</h3><p>分析で終わらない、売上に直結する具体的な改善提案を実施</p></div>
+  <div class="svc-wrap">
+    <div class="svc-tabs reveal">
+      <button class="svc-tab active" data-tab="demand">需要予測・在庫</button>
+      <button class="svc-tab" data-tab="pricing">価格・収益最適化</button>
+      <button class="svc-tab" data-tab="customer">顧客分析・マーケ</button>
+      <button class="svc-tab" data-tab="hr">人員・労務最適化</button>
+      <button class="svc-tab" data-tab="automation">業務効率化・自動化</button>
+      <button class="svc-tab" data-tab="ops">設備・オペレーション</button>
+      <button class="svc-tab" data-tab="mgmt">経営判断支援</button>
+      <button class="svc-tab" data-tab="creative">クリエイティブ</button>
+    </div>
+
+    <div class="svc-panel active" data-panel="demand">
+      <div class="svc-grid">
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe)">📦</div><h3>発注量最適化</h3></div><p>POS・天候・販促日を掛け合わせ、SKUごとの適正発注量を自動算出。在庫コスト15〜30%削減</p></div>
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#fef3c7,#fde68a)">⚠️</div><h3>廃棄ロス予測アラート</h3></div><p>賞味期限と販売ペースから廃棄リスク商品をリアルタイム警告。値引きタイミングを自動提案</p></div>
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0)">📝</div><h3>自動発注ドラフト生成</h3></div><p>予測値をもとに発注書ドラフトを自動生成。担当者は確認・微調整するだけで発注業務を半分以下に</p></div>
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8)">🔮</div><h3>季節・トレンド連動MD支援</h3></div><p>SNSトレンド・気象データ・過去売上から来月伸びるカテゴリを予測。アパレルや雑貨小売に有効</p></div>
+      </div>
+    </div>
+
+    <div class="svc-panel" data-panel="pricing">
+      <div class="svc-grid">
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8)">🏨</div><h3>宿泊施設ダイナミックプライシング</h3></div><p>需要・曜日・イベント・残室数から最適価格を推奨。RevPAR 10〜25%向上</p></div>
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#fef3c7,#fde68a)">🍽️</div><h3>飲食店メニュー価格最適化</h3></div><p>曜日・時間帯・客層・原価変動に応じた最適メニュー価格を提案。値付けの属人化を解消</p></div>
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe)">🛍️</div><h3>EC向けリアルタイム価格調整</h3></div><p>競合価格モニタリングと自社在庫状況を掛け合わせ、利益率を最大化する価格をリアルタイム提案</p></div>
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0)">🅿️</div><h3>駐車場・レンタルスペース料金最適化</h3></div><p>需要パターンから時間帯別の最適料金を算出。稼働率と収益のバランスを最大化</p></div>
+      </div>
+    </div>
+
+    <div class="svc-panel" data-panel="customer">
+      <div class="svc-grid">
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe)">📋</div><h3>アンケート自動分析＆改善提案</h3></div><p>自由記述をAIで分類・感情分析し、改善すべき項目を優先度付きで自動レポート化</p></div>
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8)">🔔</div><h3>顧客離脱（チャーン）予測</h3></div><p>「来月退会しそうな顧客」を予測し、事前フォロー施策を打てる仕組みを構築</p></div>
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe)">🎯</div><h3>販促効果シミュレーション</h3></div><p>チラシ・クーポン・LINE配信の効果を過去データから事前シミュレーション。販促費のROIを可視化</p></div>
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#fef3c7,#fde68a)">👥</div><h3>顧客セグメント自動分類</h3></div><p>購買履歴・行動データからLTV別に顧客を自動分類し、セグメントごとの最適アプローチを提案</p></div>
+      </div>
+    </div>
+
+    <div class="svc-panel" data-panel="hr">
+      <div class="svc-grid">
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0)">📅</div><h3>需要連動型シフト自動作成</h3></div><p>来客数・売上予測に基づき必要人員を時間帯別に算出。シフト表ドラフトを自動生成</p></div>
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe)">📈</div><h3>採用需要予測</h3></div><p>事業計画と離職率データから3〜6ヶ月後の必要採用数を部門別に予測。慌て採用を防止</p></div>
+      </div>
+    </div>
+
+    <div class="svc-panel" data-panel="automation">
+      <div class="svc-grid">
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe)">💬</div><h3>社内問い合わせAIチャットボット</h3></div><p>社内規程・マニュアル・FAQをAIが学習し、総務・人事・経理への問い合わせ対応を大幅削減</p></div>
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#fef3c7,#fde68a)">🧾</div><h3>請求書・納品書の自動読取＆仕訳</h3></div><p>紙やPDFの請求書をAI-OCRで読み取り、勘定科目を自動分類して会計ソフトへ連携</p></div>
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8)">📑</div><h3>契約書レビュー支援</h3></div><p>契約書のリスク箇所をAIがハイライトし、チェックリスト形式で提示。少人数法務でも安心</p></div>
+      </div>
+    </div>
+
+    <div class="svc-panel" data-panel="ops">
+      <div class="svc-grid">
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#ffedd5,#fed7aa)">🔧</div><h3>設備故障予兆検知（予知保全）</h3></div><p>空調・冷蔵庫・製造機械等のセンサーデータから故障の兆候を検知。突発ダウンタイムを削減</p></div>
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0)">🚚</div><h3>配送ルート最適化</h3></div><p>配送先・時間指定・車両キャパを考慮し最適ルートを自動算出。物流コスト削減と負担軽減を同時実現</p></div>
+      </div>
+    </div>
+
+    <div class="svc-panel" data-panel="mgmt">
+      <div class="svc-grid">
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe)">📊</div><h3>経営ダッシュボード自動生成</h3></div><p>売上・利益・在庫回転率・人件費率などのKPIを自動集約。毎朝見るだけで現状把握</p></div>
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe)">📍</div><h3>出店・退店判断支援</h3></div><p>商圏データ（人口動態・競合・交通量）をAI分析し、新規出店候補地のスコアリングを支援</p></div>
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#fef3c7,#fde68a)">💴</div><h3>キャッシュフロー予測</h3></div><p>売掛金・仕入れサイクル・季節変動を学習し、3ヶ月先のキャッシュフローを予測。資金繰りを先読み</p></div>
+      </div>
+    </div>
+
+    <div class="svc-panel" data-panel="creative">
+      <div class="svc-grid">
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8)">🎬</div><h3>YouTubeディレクション＆プロデュース</h3></div><p>戦略設計・企画・制作・分析改善まで一気通貫でチャンネルをプロデュース</p></div>
+        <div class="svc-item reveal"><div class="svc-item-head"><div class="svc-item-icon" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe)">📱</div><h3>SNS運用代行</h3></div><p>企画・投稿制作・分析レポートまで、SNSアカウントの運用を一括サポート</p></div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <section class="works" id="works">
   <div class="sec-head reveal">
     <span class="sec-label">Works</span>
-    <h2 class="sec-title">TRACK RECORD</h2>
-    <p class="sec-desc">映像から活字まで、「正確に、高品質に伝える」クリエイティブを幅広く展開</p>
+    <h2 class="sec-title">CASE STUDIES</h2>
+    <p class="sec-desc">分析するだけでなく、"伝わって動ける形"にする。それがにわたまの支援です</p>
   </div>
   <div class="works-grid">
-    <div class="work-card reveal" data-tilt>
-      <div class="work-bg"></div>
-      <div class="work-float">🎥</div>
-      <div class="work-inner"><span class="work-tag">Creative</span><h3>登録者200万人規模チャンネル</h3><p>教育系YouTubeチャンネルの編集サポート</p></div>
+    <div class="case-card reveal" data-tilt data-tilt-max="4">
+      <div class="case-head">
+        <div class="case-icon">🏨</div>
+        <div class="case-info">
+          <span class="case-tag">Hotel / Review Analytics</span>
+          <h3>宿泊レビューを"読む作業"から"改善に使う資産"へ</h3>
+          <p class="case-sub">2拠点・計84室の独立系ビジネスホテル｜Googleレビュー・OTA口コミ月180件を横断分析</p>
+        </div>
+        <div class="case-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="case-body"><div class="case-body-inner">
+        <p class="case-story">口コミは集まっているのに、改善に活かしきれていない。そんな状態だったビジネスホテルに対し、にわたまはGoogleレビューと宿泊アンケートを横断分析。「何が褒められ、何が満足度を下げているのか」を現場職種別に翻訳し、フロント・清掃・朝食それぞれが動ける改善メモまで落とし込みました。分析するだけでなく、"伝わって動ける形"にすることが、にわたまの支援の特徴です。</p>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="case-metric-label">ネガティブレビュー比率</div><div class="case-metric-row"><span class="case-metric-before">28%</span><span class="case-metric-arrow">→</span><span class="case-metric-after">17%</span></div></div>
+          <div class="case-metric"><div class="case-metric-label">清掃の低評価言及 / 月</div><div class="case-metric-row"><span class="case-metric-before">42件</span><span class="case-metric-arrow">→</span><span class="case-metric-after">19件</span></div></div>
+          <div class="case-metric"><div class="case-metric-label">レビュー平均評価</div><div class="case-metric-row"><span class="case-metric-before">3.8</span><span class="case-metric-arrow">→</span><span class="case-metric-after">4.2</span></div></div>
+          <div class="case-metric"><div class="case-metric-label">口コミ確認・集計時間 / 月</div><div class="case-metric-row"><span class="case-metric-before">12時間</span><span class="case-metric-arrow">→</span><span class="case-metric-after">2時間</span></div></div>
+        </div>
+      </div></div>
     </div>
-    <div class="work-card reveal" data-tilt>
-      <div class="work-bg"></div>
-      <div class="work-float">🎬</div>
-      <div class="work-inner"><span class="work-tag">Creative</span><h3>ポラリスアカデミア</h3><p>チャンネルディレクション＆プロデュース</p></div>
+    <div class="case-card reveal" data-tilt data-tilt-max="4">
+      <div class="case-head">
+        <div class="case-icon">🛒</div>
+        <div class="case-info">
+          <span class="case-tag">Supermarket / Demand Forecast</span>
+          <h3>勘と経験の発注から、利益を残す発注へ</h3>
+          <p class="case-sub">5店舗展開の地域密着型スーパー｜惣菜部門28SKU・月商2,400万円の発注量を最適化</p>
+        </div>
+        <div class="case-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="case-body"><div class="case-body-inner">
+        <p class="case-story">スーパーの惣菜部門では、売れ残りを恐れて欠品し、欠品を恐れて廃棄する——そんな矛盾が日常的に起きています。にわたまは、POSデータ・曜日・天候・販促日を掛け合わせ、SKUごとの発注量を最適化。さらに、店長向けには経営判断として、現場向けには補充アクションとして、同じ分析結果を"使う人に伝わる形"に再設計しました。その結果、廃棄率と欠品率を同時に圧縮し、惣菜部門の粗利改善に貢献しました。</p>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="case-metric-label">惣菜廃棄率</div><div class="case-metric-row"><span class="case-metric-before">8.6%</span><span class="case-metric-arrow">→</span><span class="case-metric-after">5.1%</span></div></div>
+          <div class="case-metric"><div class="case-metric-label">欠品率</div><div class="case-metric-row"><span class="case-metric-before">6.4%</span><span class="case-metric-arrow">→</span><span class="case-metric-after">3.2%</span></div></div>
+          <div class="case-metric"><div class="case-metric-label">惣菜部門 粗利改善</div><div class="case-metric-row"><span class="case-metric-after">+78万円 / 月</span></div></div>
+          <div class="case-metric"><div class="case-metric-label">発注判断時間 / 日</div><div class="case-metric-row"><span class="case-metric-before">90分</span><span class="case-metric-arrow">→</span><span class="case-metric-after">35分</span></div></div>
+        </div>
+      </div></div>
     </div>
-    <div class="work-card reveal" data-tilt>
-      <div class="work-bg"></div>
-      <div class="work-float">📚</div>
-      <div class="work-inner"><span class="work-tag">Publishing</span><h3>河出書房新社 刊行書籍</h3><p>複数作品への制作参画・校正校閲</p></div>
+
+    <div class="case-card reveal" data-tilt data-tilt-max="4">
+      <div class="case-head">
+        <div class="case-icon">💰</div>
+        <div class="case-info">
+          <span class="case-tag">Hotel / Dynamic Pricing</span>
+          <h3>"値付けの勘"を、利益につながる判断基準へ</h3>
+          <p class="case-sub">独立系ホテル・46室｜稼働率71%・週2回の手動価格改定を最適化</p>
+        </div>
+        <div class="case-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="case-body"><div class="case-body-inner">
+        <p class="case-story">価格は変えている。でも、"いつ・どこまで・なぜ"を決める仕組みがない。独立系ホテルに対し、にわたまは需要・曜日・イベント・残室数をもとにした価格推奨ロジックを構築しました。重要なのは、価格を自動で出すことだけではなく、その価格の意味が現場に伝わること。支配人の判断材料としても、現場説明の根拠としても使える形でルールを設計し、稼働率を大きく落とすことなく客室売上の最大化を実現しました。</p>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="case-metric-label">ADR（平均客室単価）</div><div class="case-metric-row"><span class="case-metric-before">¥8,400</span><span class="case-metric-arrow">→</span><span class="case-metric-after">¥9,250</span></div></div>
+          <div class="case-metric"><div class="case-metric-label">RevPAR</div><div class="case-metric-row"><span class="case-metric-before">¥5,964</span><span class="case-metric-arrow">→</span><span class="case-metric-after">¥6,845</span></div></div>
+          <div class="case-metric"><div class="case-metric-label">月間客室売上</div><div class="case-metric-row"><span class="case-metric-after">+11.8%</span></div></div>
+          <div class="case-metric"><div class="case-metric-label">価格改定作業 / 週</div><div class="case-metric-row"><span class="case-metric-before">4時間</span><span class="case-metric-arrow">→</span><span class="case-metric-after">45分</span></div></div>
+        </div>
+      </div></div>
     </div>
-    <div class="work-card reveal" data-tilt>
-      <div class="work-bg"></div>
-      <div class="work-float">🎭</div>
-      <div class="work-inner"><span class="work-tag">Animation</span><h3>謎解きイベント アニメーション</h3><p>イベント向けアニメーション制作</p></div>
+    <div class="case-card reveal" data-tilt data-tilt-max="4">
+      <div class="case-head">
+        <div class="case-icon">🚚</div>
+        <div class="case-info">
+          <span class="case-tag">Logistics / Route Optimization</span>
+          <h3>配車担当の経験値を、再現可能な配送ロジックへ</h3>
+          <p class="case-sub">地場の食品・日用品配送会社｜車両18台・1日平均246件の配送ルートを再設計</p>
+        </div>
+        <div class="case-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="case-body"><div class="case-body-inner">
+        <p class="case-story">配送現場では、配車担当者の経験値がそのまま会社の生産性になります。一方で、荷量の波や時間指定、ラストマイルの複雑化により、"昔ながらの回し方"では限界が来ています。にわたまは、配送先・時間指定・車両容量・荷量をもとにルートを再設計し、走行距離と遅延を同時に圧縮。さらに、現場が納得して運用を変えられるよう、配車担当・ドライバーそれぞれに伝わる資料と画面を設計しました。最適化して終わりではなく、現場が使える形にする——そこまでが支援範囲です。</p>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="case-metric-label">総走行距離 / 日</div><div class="case-metric-row"><span class="case-metric-before">1,120km</span><span class="case-metric-arrow">→</span><span class="case-metric-after">942km</span></div></div>
+          <div class="case-metric"><div class="case-metric-label">1件あたり配送コスト</div><div class="case-metric-row"><span class="case-metric-after">-12.6%</span></div></div>
+          <div class="case-metric"><div class="case-metric-label">時間指定遅延率</div><div class="case-metric-row"><span class="case-metric-before">5.8%</span><span class="case-metric-arrow">→</span><span class="case-metric-after">1.9%</span></div></div>
+          <div class="case-metric"><div class="case-metric-label">同一台数での配送件数</div><div class="case-metric-row"><span class="case-metric-after">+9.4%</span></div></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="case-card reveal" data-tilt data-tilt-max="4">
+      <div class="case-head">
+        <div class="case-icon">📊</div>
+        <div class="case-info">
+          <span class="case-tag">Restaurant / Dashboard</span>
+          <h3>数字を見る会社ではなく、数字で動ける会社へ</h3>
+          <p class="case-sub">6店舗展開の飲食チェーン・月商4,800万円｜POS・シフト・原価表を統合した経営ダッシュボード</p>
+        </div>
+        <div class="case-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="case-body"><div class="case-body-inner">
+        <p class="case-story">多店舗飲食では、データがないのではなく、見える形になっていないことが多くあります。にわたまは、POS・シフト・原価表をつなぎ、社長には経営判断に必要な数字を、店長には現場改善に必要な数字を、それぞれ別の見せ方で設計。その結果、会議のための集計作業を減らし、数字に基づく日次判断を可能にしました。にわたまの強みは、ダッシュボードを作ることではなく、数字が"伝わって動く"状態をつくることです。</p>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="case-metric-label">月次集計時間</div><div class="case-metric-row"><span class="case-metric-before">18時間</span><span class="case-metric-arrow">→</span><span class="case-metric-after">3時間</span></div></div>
+          <div class="case-metric"><div class="case-metric-label">店舗別PL確認</div><div class="case-metric-row"><span class="case-metric-before">翌月10日</span><span class="case-metric-arrow">→</span><span class="case-metric-after">翌日朝</span></div></div>
+          <div class="case-metric"><div class="case-metric-label">人件費率 高止まり店舗</div><div class="case-metric-row"><span class="case-metric-before">3店 / 6店</span><span class="case-metric-arrow">→</span><span class="case-metric-after">1店 / 6店</span></div></div>
+          <div class="case-metric"><div class="case-metric-label">意思決定リードタイム</div><div class="case-metric-row"><span class="case-metric-before">週次</span><span class="case-metric-arrow">→</span><span class="case-metric-after">日次</span></div></div>
+        </div>
+      </div></div>
     </div>
   </div>
 </section>
@@ -303,7 +466,7 @@
     <div class="contact-in">
       <h3>まずはお気軽にご相談ください</h3>
       <p>YouTubeチャンネルの立ち上げ・改善、データ活用・需要予測など、<br>無料ヒアリングを実施いたします。最短2週間で運用開始可能です。</p>
-      <a href="mailto:contact@niwatama.com" class="contact-email">contact@niwatama.com</a>
+      <a href="mailto:info@ni-wa-tama.com" class="contact-email">info@ni-wa-tama.com</a>
     </div>
   </div>
 </section>
@@ -335,6 +498,49 @@ function updateHeroParallax() {
   requestAnimationFrame(updateHeroParallax);
 }
 updateHeroParallax();
+
+// ===== ABOUT CONTENT 3D TILT =====
+const aboutContent = document.querySelector('.about-content');
+if (aboutContent) {
+  const parent = aboutContent.closest('.about-grid') || aboutContent.parentElement;
+  parent.addEventListener('mousemove', e => {
+    const r = aboutContent.getBoundingClientRect();
+    const cx = r.left + r.width / 2;
+    const cy = r.top + r.height / 2;
+    const dx = (e.clientX - cx) / (r.width / 2);
+    const dy = (e.clientY - cy) / (r.height / 2);
+    aboutContent.style.transform = `rotateY(${dx * 6}deg) rotateX(${dy * -4}deg)`;
+  });
+  parent.addEventListener('mouseleave', () => {
+    aboutContent.style.transform = 'rotateY(0) rotateX(0)';
+    aboutContent.style.transition = 'transform .5s ease';
+    setTimeout(() => { aboutContent.style.transition = ''; }, 500);
+  });
+}
+
+// ===== SERVICE TABS =====
+document.querySelectorAll('.svc-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.svc-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.svc-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    const panel = document.querySelector(`.svc-panel[data-panel="${tab.dataset.tab}"]`);
+    if (panel) {
+      panel.classList.add('active');
+      panel.querySelectorAll('.reveal').forEach(el => { el.classList.remove('visible'); void el.offsetWidth; el.classList.add('visible'); });
+    }
+  });
+});
+
+// ===== CASE STUDY ACCORDION =====
+document.querySelectorAll('.case-card').forEach(card => {
+  card.querySelector('.case-head').addEventListener('click', () => {
+    const wasOpen = card.classList.contains('open');
+    // close all others
+    document.querySelectorAll('.case-card.open').forEach(c => c.classList.remove('open'));
+    if (!wasOpen) card.classList.add('open');
+  });
+});
 
 // ===== 3D TILT on data-tilt elements =====
 document.querySelectorAll('[data-tilt]').forEach(el => {
@@ -722,10 +928,10 @@ document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
   function makeLogo() {
     const img = document.createElement('img');
     img.src = 'logo.jpg';
-    img.style.cssText = `position:absolute;width:0;height:0;opacity:0;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;transition:all .5s cubic-bezier(.16,1,.3,1);box-shadow:0 0 0 rgba(139,92,246,0);`;
+    img.style.cssText = `position:absolute;width:0;height:0;opacity:0;border-radius:50%;object-fit:cover;transition:all .5s cubic-bezier(.16,1,.3,1);box-shadow:0 0 0 rgba(139,92,246,0);`;
     overlay.appendChild(img);
     requestAnimationFrame(()=>{
-      img.style.width='220px'; img.style.height='260px'; img.style.opacity='1';
+      img.style.width='220px'; img.style.height='220px'; img.style.opacity='1';
       img.style.boxShadow='0 0 60px rgba(139,92,246,.4),0 0 120px rgba(59,130,246,.2)';
     });
     return img;
@@ -800,10 +1006,10 @@ document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
     // Two halves
     ['left','right'].forEach((side,i)=>{
       const half=document.createElement('div');
-      half.style.cssText=`position:absolute;left:${cx-110}px;top:${cy-130}px;width:220px;height:260px;overflow:hidden;transition:all .8s cubic-bezier(.16,1,.3,1);pointer-events:none;`;
+      half.style.cssText=`position:absolute;left:${cx-110}px;top:${cy-110}px;width:220px;height:220px;overflow:hidden;transition:all .8s cubic-bezier(.16,1,.3,1);pointer-events:none;`;
       const inner=document.createElement('img');
       inner.src='logo.jpg';
-      inner.style.cssText=`width:220px;height:260px;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;`;
+      inner.style.cssText=`width:220px;height:220px;border-radius:50%;object-fit:cover;`;
       // Clip to left or right half
       if(side==='left') half.style.clipPath='inset(0 50% 0 0)';
       else half.style.clipPath='inset(0 0 0 50%)';
@@ -866,7 +1072,7 @@ document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
       const sz=20+Math.random()*50;
       const a=(6.28/30)*i+(Math.random()-.5)*.5, d=300+Math.random()*500;
       const c=pick(COLORS7), dl=Math.random()*100;
-      f.style.cssText=`position:absolute;left:${cx-sz/2}px;top:${cy-sz/2}px;width:${sz}px;height:${sz}px;border-radius:50%;opacity:1;box-shadow:0 0 15px ${c}80;transition:all ${.8+Math.random()*.6}s cubic-bezier(.16,1,.3,1);transition-delay:${dl}ms;pointer-events:none;`;
+      f.style.cssText=`position:absolute;left:${cx-sz/2}px;top:${cy-sz/2}px;width:${sz}px;height:${sz}px;border-radius:50%;object-fit:cover;opacity:1;box-shadow:0 0 15px ${c}80;transition:all ${.8+Math.random()*.6}s cubic-bezier(.16,1,.3,1);transition-delay:${dl}ms;pointer-events:none;`;
       overlay.appendChild(f);
       requestAnimationFrame(()=>requestAnimationFrame(()=>{
         f.style.transform=`translate(${Math.cos(a)*d}px,${Math.sin(a)*d-100}px) rotate(${(Math.random()-.5)*720}deg) scale(${.3+Math.random()*.4})`;
@@ -958,7 +1164,7 @@ document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
       for(let i=0;i<15;i++){
         const sh=document.createElement('img'); sh.src='logo.jpg';
         const sz=10+Math.random()*20, a=Math.random()*6.28, d=100+Math.random()*250;
-        sh.style.cssText=`position:absolute;left:${cx2-sz/2}px;top:${cy2-sz/2}px;width:${sz}px;height:${sz}px;border-radius:50%;opacity:1;transition:all ${.5+Math.random()*.4}s cubic-bezier(.16,1,.3,1);pointer-events:none;`;
+        sh.style.cssText=`position:absolute;left:${cx2-sz/2}px;top:${cy2-sz/2}px;width:${sz}px;height:${sz}px;border-radius:50%;object-fit:cover;opacity:1;transition:all ${.5+Math.random()*.4}s cubic-bezier(.16,1,.3,1);pointer-events:none;`;
         overlay.appendChild(sh);
         requestAnimationFrame(()=>requestAnimationFrame(()=>{
           sh.style.transform=`translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px) scale(.2)`;
@@ -1047,7 +1253,7 @@ document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
         const sz=15+Math.random()*45;
         const a=Math.random()*6.28, d=200+Math.random()*600;
         const c=pick(rainbowColors);
-        f.style.cssText=`position:absolute;left:${cx-sz/2}px;top:${cy-sz/2}px;width:${sz}px;height:${sz}px;border-radius:50%;opacity:1;box-shadow:0 0 20px ${c};transition:all ${.6+Math.random()*.8}s cubic-bezier(.16,1,.3,1);pointer-events:none;`;
+        f.style.cssText=`position:absolute;left:${cx-sz/2}px;top:${cy-sz/2}px;width:${sz}px;height:${sz}px;border-radius:50%;object-fit:cover;opacity:1;box-shadow:0 0 20px ${c};transition:all ${.6+Math.random()*.8}s cubic-bezier(.16,1,.3,1);pointer-events:none;`;
         overlay.appendChild(f);
         requestAnimationFrame(()=>requestAnimationFrame(()=>{
           f.style.transform=`translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px) rotate(${Math.random()*720}deg) scale(.2)`;
