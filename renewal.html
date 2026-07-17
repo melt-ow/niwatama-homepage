@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>株式会社にわたま — SNSで、企業の物語を社会に届ける。</title>
+<meta name="description" content="100万人YouTubeを育てたチームが、企業のSNSと動画を、戦略から制作まで伴走します。株式会社にわたま｜SNS運用支援・映像制作">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --navy:#1F3A5F;
+    --navy-deep:#162B47;
+    --orange:#E8833A;
+    --bg:#F4F7FB;
+    --text:#222933;
+    --muted:#5A6675;
+    --line:rgba(31,58,95,.12);
+    --white:#fff;
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Noto Sans JP','游ゴシック体','Yu Gothic',sans-serif;
+    background:var(--bg);color:var(--text);
+    line-height:1.9;font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+  .en{font-family:'Montserrat','Noto Sans JP',sans-serif;font-weight:700;letter-spacing:.08em;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  section{padding:140px 0;}
+
+  /* ---- NAV ---- */
+  nav{
+    position:fixed;top:0;left:0;width:100%;z-index:100;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 40px;
+    background:rgba(244,247,251,.85);backdrop-filter:blur(12px);
+    border-bottom:1px solid transparent;transition:.3s;
+  }
+  nav.scrolled{padding:14px 40px;background:rgba(244,247,251,.97);border-bottom-color:var(--line);}
+  .nav-logo{font-weight:900;font-size:1.15rem;color:var(--navy);letter-spacing:.12em;text-decoration:none;}
+  .nav-links{display:flex;gap:36px;list-style:none;align-items:center;}
+  .nav-links a{
+    font-family:'Montserrat',sans-serif;font-weight:600;font-size:.8rem;letter-spacing:.1em;
+    color:var(--navy);text-decoration:none;position:relative;padding:4px 0;transition:.25s;
+  }
+  .nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1.5px;background:var(--orange);transition:width .25s;}
+  .nav-links a:hover::after{width:100%;}
+  .nav-links .nav-cta{
+    background:var(--navy);color:#fff;padding:10px 22px;border-radius:2px;
+  }
+  .nav-links .nav-cta::after{display:none;}
+  .nav-links .nav-cta:hover{background:var(--orange);}
+  .nav-toggle{display:none;background:none;border:0;font-size:1.5rem;color:var(--navy);cursor:pointer;line-height:1;}
+
+  /* ---- HERO ---- */
+  .hero{
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    padding:160px 0 80px;
+  }
+  .hero-label{
+    font-family:'Montserrat',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.28em;
+    color:var(--orange);margin-bottom:32px;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem,5.4vw,4.1rem);font-weight:900;line-height:1.4;
+    color:var(--navy);letter-spacing:.01em;margin-bottom:40px;
+  }
+  .hero h1 .accent{color:var(--orange);}
+  .hero-sub{
+    font-size:clamp(.98rem,1.6vw,1.15rem);color:var(--muted);max-width:620px;
+    line-height:2.1;margin-bottom:56px;
+  }
+  .hero-sub strong{color:var(--navy);font-weight:700;}
+  .btn{
+    display:inline-flex;align-items:center;gap:12px;
+    background:var(--navy);color:#fff;text-decoration:none;
+    padding:20px 44px;border-radius:2px;
+    font-family:'Montserrat',sans-serif;font-weight:600;font-size:.9rem;letter-spacing:.1em;
+    transition:.3s;border:0;cursor:pointer;
+  }
+  .btn:hover{background:var(--orange);transform:translateY(-2px);box-shadow:0 12px 30px rgba(232,131,58,.28);}
+  .btn .arrow{transition:transform .3s;}
+  .btn:hover .arrow{transform:translateX(4px);}
+
+  .hero-stats{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:0;margin-top:110px;border-top:1px solid var(--line);
+  }
+  .hero-stat{padding:36px 24px 0 0;}
+  .hero-stat .num{
+    font-family:'Montserrat',sans-serif;font-weight:700;
+    font-size:clamp(2rem,4vw,3.1rem);color:var(--navy);line-height:1;letter-spacing:-.02em;
+  }
+  .hero-stat .num .unit{font-size:.42em;margin-left:4px;font-weight:600;}
+  .hero-stat .lbl{font-size:.78rem;color:var(--muted);letter-spacing:.06em;margin-top:14px;}
+
+  /* ---- SECTION HEAD ---- */
+  .sec-label{
+    font-family:'Montserrat',sans-serif;font-weight:700;font-size:2rem;letter-spacing:.06em;
+    color:var(--navy);margin-bottom:20px;display:block;
+  }
+  .sec-lead{
+    font-size:clamp(1.15rem,2.4vw,1.7rem);font-weight:700;color:var(--navy);
+    line-height:1.8;margin-bottom:72px;
+  }
+
+  /* ---- MESSAGE ---- */
+  .message{background:var(--navy);color:#fff;}
+  .message .sec-label{color:#fff;}
+  .message .msg-lead{
+    font-size:clamp(1.5rem,3.6vw,2.7rem);font-weight:900;line-height:1.7;
+    margin-bottom:56px;letter-spacing:.01em;
+  }
+  .message .msg-lead .accent{color:var(--orange);}
+  .message p{
+    font-size:1rem;line-height:2.4;color:rgba(255,255,255,.82);max-width:680px;
+  }
+  .message p + p{margin-top:32px;}
+  .message p strong{color:#fff;font-weight:700;}
+
+  /* ---- SERVICE ---- */
+  .svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+  .svc-card{
+    background:var(--white);padding:56px 48px;border-radius:3px;
+    border:1px solid var(--line);transition:.35s;
+  }
+  .svc-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(31,58,95,.1);border-color:transparent;}
+  .svc-no{
+    font-family:'Montserrat',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.2em;
+    color:var(--orange);margin-bottom:24px;
+  }
+  .svc-card h3{font-size:1.5rem;font-weight:900;color:var(--navy);margin-bottom:8px;line-height:1.5;}
+  .svc-card .svc-en{
+    font-family:'Montserrat',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.14em;
+    color:var(--muted);margin-bottom:28px;
+  }
+  .svc-card p{font-size:.94rem;color:var(--muted);line-height:2.1;}
+  .svc-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;}
+  .svc-tags span{
+    font-size:.72rem;color:var(--navy);background:var(--bg);
+    padding:6px 14px;border-radius:2px;letter-spacing:.04em;
+  }
+
+  /* ---- WORKS ---- */
+  .works{background:var(--white);}
+  .works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .work-card{
+    border:1px solid var(--line);border-radius:3px;overflow:hidden;
+    background:var(--white);transition:.35s;display:flex;flex-direction:column;
+  }
+  .work-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(31,58,95,.12);}
+  .work-thumb{
+    aspect-ratio:16/10;background:var(--navy);
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .work-thumb::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 70% 20%,rgba(232,131,58,.5),transparent 62%);
+  }
+  .work-thumb .t-num{
+    position:relative;font-family:'Montserrat',sans-serif;font-weight:700;
+    font-size:2.5rem;color:#fff;line-height:1;letter-spacing:-.02em;
+  }
+  .work-thumb .t-num .unit{font-size:.42em;margin-left:3px;}
+  .work-thumb .t-cap{
+    position:relative;font-size:.7rem;color:rgba(255,255,255,.75);
+    letter-spacing:.14em;margin-top:12px;
+  }
+  .work-body{padding:28px 26px 30px;display:flex;flex-direction:column;flex:1;}
+  .work-cat{
+    font-family:'Montserrat',sans-serif;font-weight:600;font-size:.66rem;letter-spacing:.16em;
+    color:var(--orange);margin-bottom:12px;
+  }
+  .work-body h3{font-size:1.02rem;font-weight:700;color:var(--navy);line-height:1.7;margin-bottom:14px;}
+  .work-body p{font-size:.84rem;color:var(--muted);line-height:1.95;flex:1;}
+  .work-badge{
+    display:inline-block;align-self:flex-start;margin-top:22px;
+    background:var(--bg);color:var(--navy);
+    font-family:'Montserrat',sans-serif;font-weight:700;font-size:.74rem;letter-spacing:.04em;
+    padding:8px 16px;border-radius:2px;
+  }
+  .works-note{margin-top:40px;font-size:.78rem;color:var(--muted);}
+
+  /* ---- COMPANY ---- */
+  .cmp-table{border-top:1px solid var(--line);}
+  .cmp-row{
+    display:grid;grid-template-columns:220px 1fr;gap:24px;
+    padding:28px 8px;border-bottom:1px solid var(--line);
+  }
+  .cmp-row dt{
+    font-family:'Montserrat',sans-serif;font-weight:600;font-size:.76rem;letter-spacing:.14em;
+    color:var(--navy);padding-top:4px;
+  }
+  .cmp-row dt small{display:block;font-family:'Noto Sans JP',sans-serif;font-weight:400;font-size:.78rem;letter-spacing:0;color:var(--muted);margin-top:4px;}
+  .cmp-row dd{font-size:.95rem;color:var(--text);}
+  .cmp-row dd a{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--line);transition:.25s;}
+  .cmp-row dd a:hover{color:var(--orange);border-color:var(--orange);}
+  .tbd{color:var(--orange);font-size:.85rem;}
+
+  /* ---- CONTACT ---- */
+  .contact{background:var(--navy);color:#fff;}
+  .contact .sec-label{color:#fff;}
+  .contact .sec-lead{color:#fff;margin-bottom:16px;}
+  .contact-note{color:rgba(255,255,255,.7);font-size:.9rem;margin-bottom:64px;}
+  .contact-note a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(232,131,58,.5);}
+  form{max-width:720px;}
+  .field{margin-bottom:36px;}
+  .field label{
+    display:block;font-size:.82rem;font-weight:700;letter-spacing:.06em;
+    color:#fff;margin-bottom:14px;
+  }
+  .req{color:var(--orange);font-size:.72rem;margin-left:8px;font-weight:700;}
+  .opt{color:rgba(255,255,255,.5);font-size:.72rem;margin-left:8px;font-weight:400;}
+  .field input[type=text],.field input[type=email],.field textarea{
+    width:100%;background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.18);border-radius:2px;
+    padding:16px 18px;color:#fff;font-size:.95rem;
+    font-family:inherit;transition:.25s;
+  }
+  .field textarea{min-height:160px;resize:vertical;line-height:1.9;}
+  .field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.35);}
+  .field input:focus,.field textarea:focus{
+    outline:none;border-color:var(--orange);background:rgba(255,255,255,.1);
+  }
+  .radio-row{display:flex;gap:12px;flex-wrap:wrap;}
+  .radio-row label{
+    display:flex;align-items:center;gap:10px;margin:0;cursor:pointer;
+    border:1px solid rgba(255,255,255,.18);border-radius:2px;
+    padding:14px 26px;font-weight:400;font-size:.9rem;transition:.25s;
+  }
+  .radio-row label:hover{border-color:rgba(255,255,255,.45);}
+  .radio-row input{accent-color:var(--orange);width:16px;height:16px;cursor:pointer;}
+  .radio-row label:has(input:checked){border-color:var(--orange);background:rgba(232,131,58,.12);}
+  .contact form .btn{background:var(--orange);margin-top:12px;}
+  .contact form .btn:hover{background:#fff;color:var(--navy);box-shadow:0 12px 30px rgba(0,0,0,.2);}
+
+  /* ---- FOOTER ---- */
+  footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:80px 0 40px;}
+  .ft-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:48px;align-items:start;}
+  .ft-brand img{width:48px;height:auto;background:#fff;border-radius:50%;padding:4px;margin-bottom:20px;display:block;}
+  .ft-brand .ft-name{font-weight:900;font-size:1.05rem;color:#fff;letter-spacing:.12em;margin-bottom:12px;}
+  .ft-brand .ft-copy{font-size:.85rem;line-height:1.9;}
+  .ft-col h4{
+    font-family:'Montserrat',sans-serif;font-weight:600;font-size:.7rem;letter-spacing:.18em;
+    color:rgba(255,255,255,.4);margin-bottom:20px;
+  }
+  .ft-col ul{list-style:none;}
+  .ft-col li{margin-bottom:14px;}
+  .ft-col a{color:rgba(255,255,255,.75);text-decoration:none;font-size:.85rem;transition:.25s;}
+  .ft-col a:hover{color:var(--orange);}
+  .ft-bottom{
+    margin-top:64px;padding-top:28px;border-top:1px solid rgba(255,255,255,.1);
+    font-size:.75rem;color:rgba(255,255,255,.45);
+  }
+
+  /* ---- REVEAL ---- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease;}
+  .reveal.on{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width:900px){
+    section{padding:96px 0;}
+    .works-grid{grid-template-columns:1fr 1fr;}
+    .svc-grid{grid-template-columns:1fr;}
+    .ft-grid{grid-template-columns:1fr 1fr;gap:40px;}
+    .ft-brand{grid-column:1/-1;}
+  }
+  @media (max-width:680px){
+    nav{padding:16px 20px;}
+    nav.scrolled{padding:12px 20px;}
+    .nav-toggle{display:block;}
+    .nav-links{
+      display:none;position:absolute;top:100%;left:0;width:100%;
+      flex-direction:column;gap:0;align-items:stretch;
+      background:rgba(244,247,251,.98);border-bottom:1px solid var(--line);
+      padding:8px 20px 20px;
+    }
+    .nav-links.open{display:flex;}
+    .nav-links a{padding:16px 4px;font-size:.85rem;}
+    .nav-links .nav-cta{text-align:center;margin-top:8px;}
+    .hero{padding:130px 0 70px;}
+    .hero h1{font-size:clamp(1.7rem,6.4vw,2.4rem);margin-bottom:32px;}
+    .hero-stats{grid-template-columns:1fr;margin-top:72px;}
+    .hero-stat{padding:26px 0;border-bottom:1px solid var(--line);}
+    .hero-stat:last-child{border-bottom:0;}
+    .svc-card{padding:40px 28px;}
+    .works-grid{grid-template-columns:1fr;}
+    .cmp-row{grid-template-columns:1fr;gap:8px;padding:22px 4px;}
+    .radio-row{flex-direction:column;}
+    .radio-row label{justify-content:flex-start;}
+    .btn{width:100%;justify-content:center;padding:18px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#top" class="nav-logo">にわたま</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-links">☰</button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#service">Service</a></li>
+    <li><a href="#works">Works</a></li>
+    <li><a href="#company">Company</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="hero-label">SNS MARKETING &amp; VIDEO PRODUCTION</p>
+    <h1>SNSで、企業の物語を<br>社会に<span class="accent">届ける。</span></h1>
+    <p class="hero-sub"><strong>100万人YouTube</strong>を育てたチームが、<br>企業のSNSと動画を、戦略から制作まで伴走します。</p>
+    <a href="#contact" class="btn">Contact <span class="arrow">→</span></a>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">100<span class="unit">万人+</span></div>
+        <div class="lbl">育てたチャンネル登録者</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">3.2<span class="unit">億回</span></div>
+        <div class="lbl">累計再生回数</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">1<span class="unit">位</span></div>
+        <div class="lbl">ショート動画 全国ランキング</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MESSAGE ===== -->
+<section class="message" id="message">
+  <div class="wrap reveal">
+    <span class="sec-label en">Message</span>
+    <p class="msg-lead">発信する企業が、<br><span class="accent">選ばれる</span>時代へ。</p>
+    <p>広告が届かなくなり、情報過多で、人は「信頼できる発信者」を選ぶようになりました。</p>
+    <p><strong>株式会社にわたまは、企業の "発信する力" を支える会社です。</strong></p>
+    <p>100万人規模のチャンネルを実際に育てたメソッドで、御社のSNSと動画を、事業の柱に育てます。</p>
+  </div>
+</section>
+
+<!-- ===== SERVICE ===== -->
+<section id="service">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="sec-label en">Service</span>
+      <p class="sec-lead">企業の発信を、戦略と制作で支える。</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card reveal">
+        <div class="svc-no en">01</div>
+        <h3>SNS運用事業</h3>
+        <p class="svc-en">SNS MANAGEMENT</p>
+        <p>企業のSNSアカウントを、戦略から運用まで一気通貫で支援。YouTube / Instagram / TikTok / X 等のチャンネル設計・コンテンツ企画・ブランディング・分析改善まで対応。</p>
+        <div class="svc-tags">
+          <span>YouTube</span><span>Instagram</span><span>TikTok</span><span>X</span>
+        </div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-no en">02</div>
+        <h3>映像制作事業</h3>
+        <p class="svc-en">VIDEO PRODUCTION</p>
+        <p>企業の発信を加速する動画コンテンツの企画・制作。YouTubeロング / ショート / Reels / TikTok / 採用動画 / ブランディング動画など、用途に応じた制作を提供。</p>
+        <div class="svc-tags">
+          <span>ロング</span><span>ショート</span><span>Reels</span><span>採用動画</span><span>ブランディング</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WORKS ===== -->
+<section class="works" id="works">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="sec-label en">Works</span>
+      <p class="sec-lead">数字で語れる、発信の実績。</p>
+    </div>
+    <div class="works-grid">
+
+      <article class="work-card reveal">
+        <div class="work-thumb"><div class="t-num en">100<span class="unit">万人+</span></div><div class="t-cap en">SUBSCRIBERS</div></div>
+        <div class="work-body">
+          <p class="work-cat">EDUCATION / YOUTUBE</p>
+          <h3>教育系YouTubeチャンネル運営<br>登録者100万人+を達成</h3>
+          <p>企画・構成から撮影・編集・分析改善まで一気通貫で運営。教育ジャンルで国内トップクラスの規模に育てました。</p>
+          <span class="work-badge">登録者 100万人+</span>
+        </div>
+      </article>
+
+      <article class="work-card reveal">
+        <div class="work-thumb"><div class="t-num en">3.2<span class="unit">億回</span></div><div class="t-cap en">TOTAL VIEWS</div></div>
+        <div class="work-body">
+          <p class="work-cat">EDUCATION / YOUTUBE</p>
+          <h3>累計再生3.2億回規模の<br>チャンネル運用</h3>
+          <p>視聴維持率とサムネイル設計をデータで検証し続け、単発のヒットではなく再現性のある再生数を積み上げました。</p>
+          <span class="work-badge">累計再生 3.2億回</span>
+        </div>
+      </article>
+
+      <article class="work-card reveal">
+        <div class="work-thumb"><div class="t-num en">10<span class="unit">万人</span></div><div class="t-cap en">IN 1 MONTH</div></div>
+        <div class="work-body">
+          <p class="work-cat">CHANNEL LAUNCH</p>
+          <h3>1ヶ月で10万人到達の<br>チャンネル立ち上げ</h3>
+          <p>ゼロからのチャンネル設計。切り口とターゲットを絞り込み、立ち上げ初月で10万人到達を実現しました。</p>
+          <span class="work-badge">1ヶ月で 10万人</span>
+        </div>
+      </article>
+
+      <article class="work-card reveal">
+        <div class="work-thumb"><div class="t-num en">1<span class="unit">位</span></div><div class="t-cap en">NATIONAL RANKING</div></div>
+        <div class="work-body">
+          <p class="work-cat">SHORT VIDEO</p>
+          <h3>ショート動画で<br>全国1位を獲得</h3>
+          <p>ショート特有の冒頭2秒設計とループ構成を徹底。全国ランキング1位を獲得しました。</p>
+          <span class="work-badge">ショート 全国1位</span>
+        </div>
+      </article>
+
+      <article class="work-card reveal">
+        <div class="work-thumb"><div class="t-num en">2<span class="unit">倍</span></div><div class="t-cap en">VS INDUSTRY AVG.</div></div>
+        <div class="work-body">
+          <p class="work-cat">SNS MANAGEMENT</p>
+          <h3>エンゲージメント率<br>業界平均の2倍を達成</h3>
+          <p>「見られる」だけでなく「反応される」設計へ。コメント・保存を軸にした企画で業界平均の2倍を実現しました。</p>
+          <span class="work-badge">エンゲージメント率 2倍</span>
+        </div>
+      </article>
+
+      <article class="work-card reveal">
+        <div class="work-thumb"><div class="t-num en">採用</div><div class="t-cap en">RECRUITING CHANNEL</div></div>
+        <div class="work-body">
+          <p class="work-cat">RECRUITING</p>
+          <h3>採用文脈の<br>企業チャンネル設計</h3>
+          <p>求人広告では伝わらない社内の空気を動画で可視化。応募前に会社を理解してもらう採用チャンネルを設計しました。</p>
+          <span class="work-badge">採用チャンネル設計</span>
+        </div>
+      </article>
+
+    </div>
+    <p class="works-note">※ 守秘義務によりクライアント名は業種表記としています。詳細な実績資料はお問い合わせください。</p>
+  </div>
+</section>
+
+<!-- ===== COMPANY ===== -->
+<section id="company">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="sec-label en">Company</span>
+      <p class="sec-lead">会社情報</p>
+    </div>
+    <dl class="cmp-table reveal">
+      <div class="cmp-row"><dt>COMPANY<small>会社名</small></dt><dd>株式会社にわたま</dd></div>
+      <div class="cmp-row"><dt>FOUNDED<small>設立</small></dt><dd><span class="tbd">※ 要確認（設立年月をご記入ください）</span></dd></div>
+      <div class="cmp-row"><dt>ADDRESS<small>所在地</small></dt><dd><span class="tbd">※ 要確認（所在地をご記入ください）</span></dd></div>
+      <div class="cmp-row"><dt>CEO<small>代表者</small></dt><dd><span class="tbd">※ 要確認（代表者名をご記入ください）</span></dd></div>
+      <div class="cmp-row"><dt>BUSINESS<small>事業内容</small></dt><dd>SNS運用支援 / 映像制作</dd></div>
+      <div class="cmp-row"><dt>URL<small>ウェブサイト</small></dt><dd><a href="https://home.ni-wa-tama.com">home.ni-wa-tama.com</a></dd></div>
+      <div class="cmp-row"><dt>CONTACT<small>お問い合わせ</small></dt><dd><a href="mailto:info@ni-wa-tama.com">info@ni-wa-tama.com</a></dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="sec-label en">Contact</span>
+      <p class="sec-lead">まずはお気軽にご相談ください。</p>
+      <p class="contact-note">送信ボタンを押すとメールソフトが起動し、入力内容が本文に反映されます。<br>うまく起動しない場合は <a href="mailto:info@ni-wa-tama.com">info@ni-wa-tama.com</a> まで直接ご連絡ください。</p>
+    </div>
+
+    <form id="contact-form" class="reveal">
+      <div class="field">
+        <label for="f-name">お名前<span class="req">必須</span></label>
+        <input type="text" id="f-name" name="name" required placeholder="山田 太郎">
+      </div>
+      <div class="field">
+        <label for="f-company">会社名<span class="opt">任意</span></label>
+        <input type="text" id="f-company" name="company" placeholder="株式会社〇〇">
+      </div>
+      <div class="field">
+        <label for="f-email">メールアドレス<span class="req">必須</span></label>
+        <input type="email" id="f-email" name="email" required placeholder="example@company.co.jp">
+      </div>
+      <div class="field">
+        <label>ご相談内容の種別<span class="req">必須</span></label>
+        <div class="radio-row">
+          <label><input type="radio" name="type" value="SNS運用" required>SNS運用</label>
+          <label><input type="radio" name="type" value="映像制作">映像制作</label>
+          <label><input type="radio" name="type" value="両方">両方</label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-body">ご相談内容<span class="req">必須</span></label>
+        <textarea id="f-body" name="body" required placeholder="現在のSNSの状況、ご相談されたい内容などをご記入ください。"></textarea>
+      </div>
+      <button type="submit" class="btn">送信する <span class="arrow">→</span></button>
+    </form>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="logo.jpg" alt="株式会社にわたま ロゴ">
+        <div class="ft-name">にわたま</div>
+        <p class="ft-copy">SNSで、企業の物語を社会に届ける</p>
+      </div>
+      <div class="ft-col">
+        <h4>SITEMAP</h4>
+        <ul>
+          <li><a href="#service">Service</a></li>
+          <li><a href="#works">Works</a></li>
+          <li><a href="#company">Company</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>INFORMATION</h4>
+        <ul>
+          <li><a href="#" aria-disabled="true">プライバシーポリシー</a></li>
+          <li><a href="mailto:info@ni-wa-tama.com">info@ni-wa-tama.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="ft-bottom">© 2026 株式会社にわたま</p>
+  </div>
+</footer>
+
+<script>
+// ===== NAV: scrolled state =====
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+// ===== NAV: mobile toggle =====
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+navToggle.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', String(open));
+  navToggle.textContent = open ? '✕' : '☰';
+});
+navLinks.addEventListener('click', e => {
+  if (e.target.tagName === 'A') {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.textContent = '☰';
+  }
+});
+
+// ===== REVEAL on scroll =====
+const io = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); }
+  });
+}, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// ===== CONTACT: mailto submission =====
+document.getElementById('contact-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.target;
+  const name = f.name.value.trim();
+  const company = f.company.value.trim() || '（未記入）';
+  const email = f.email.value.trim();
+  const type = f.type.value;
+  const body = f.body.value.trim();
+
+  const subject = `【HPお問い合わせ】${type}のご相談 / ${name}様`;
+  const lines = [
+    '株式会社にわたま ご担当者様',
+    '',
+    'ホームページよりお問い合わせいたします。',
+    '',
+    '──────────────',
+    `お名前　　：${name}`,
+    `会社名　　：${company}`,
+    `メール　　：${email}`,
+    `ご相談種別：${type}`,
+    '──────────────',
+    '',
+    '【ご相談内容】',
+    body,
+    ''
+  ];
+  window.location.href = 'mailto:info@ni-wa-tama.com'
+    + '?subject=' + encodeURIComponent(subject)
+    + '&body=' + encodeURIComponent(lines.join('\n'));
+});
+</script>
+</body>
+</html>
